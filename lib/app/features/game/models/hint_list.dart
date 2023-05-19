@@ -1,5 +1,5 @@
 class HintList {
-  late final List<String> _hintList;
+  final List<String> _hintList = [];
 
   final String hint1;
   final String hint2;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_ego/app/shared/models/card_type.dart';
-import 'package:project_ego/app/shared/models/game_card.dart';
-import 'package:project_ego/app/shared/models/hint_list.dart';
+import 'package:project_ego/app/features/game/game_view.dart';
+import 'package:project_ego/app/features/home/home_view.dart';
+import 'features/game/models/hint_list.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -20,21 +20,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GameCard gameCard =
-        GameCard(type: CardType.object, target: {"EGO": hintList1});
     return MaterialApp(
-      home: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.black,
-        child: const Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Project EGO",
-              style: TextStyle(
-                  color: Colors.white, decoration: TextDecoration.none),
-            )),
-      ),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        "/": (context) => HomeView(),
+        "/game": (context) => const GameView()
+      },
+      initialRoute: "/",
     );
   }
 }
