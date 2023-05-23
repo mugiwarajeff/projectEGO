@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:project_ego/app/features/game/models/card_type.dart';
 import 'package:project_ego/app/features/game/models/game_card.dart';
-import 'package:project_ego/app/features/game/widgets/card/card_questions.dart';
+import 'package:project_ego/app/features/game/widgets/card/card_question.dart';
+import 'package:project_ego/app/features/game/widgets/card/questions_list.dart';
 
 import 'card/card_title.dart';
 
@@ -22,6 +25,10 @@ class CardView extends StatelessWidget {
   CardView({super.key});
   @override
   Widget build(BuildContext context) {
+    final double screenSize = MediaQuery.of(context).size.height;
+    final double titleSize = screenSize * 0.1;
+    final double listSize = screenSize * 0.7;
+
     return Container(
       height: double.infinity,
       color: Colors.white,
@@ -35,17 +42,14 @@ class CardView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CardTitle(cardType: gameCard.type),
-                CardQuestion(question: "Pergunta 1"),
-                CardQuestion(question: "Pergunta 2"),
-                CardQuestion(question: "Pergunta 3"),
-                CardQuestion(question: "Pergunta 4"),
-                CardQuestion(question: "Pergunta 5"),
-                CardQuestion(question: "Pergunta 6"),
-                CardQuestion(question: "Pergunta 7"),
-                CardQuestion(question: "Pergunta 8"),
-                CardQuestion(question: "Pergunta 9"),
-                CardQuestion(question: "Pergunta 10"),
+                SizedBox(
+                  height: titleSize,
+                  child: CardTitle(cardType: gameCard.type),
+                ),
+                QuestionsList(
+                  questionsList: gameCard.hintList,
+                  listSize: listSize,
+                )
               ],
             ),
           ),
